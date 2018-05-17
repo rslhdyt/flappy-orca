@@ -1,8 +1,8 @@
 // var widthBoundary = window.innerWidth * window.devicePixelRatio;
 // var heightBoundary = window.innerHeight * window.devicePixelRatio;
 var widthBoundary = 650;
-var heightBoundary = 430;
-var totalObstacle = 7;
+var totalObstacle = 8;
+var heightBoundary = totalObstacle * 59 + 20;
 
 var game = new Phaser.Game(widthBoundary, heightBoundary, Phaser.AUTO, 'container');
 
@@ -41,7 +41,7 @@ var mainState = {
     game.physics.arcade.enable(this.orca);
 
     // Add gravity to the orca to make it fall
-    this.orca.body.gravity.y = 250;
+    this.orca.body.gravity.y = 1000;
 
     this.jumpSound = game.add.audio('jump');
 
@@ -66,7 +66,7 @@ var mainState = {
   // Make the orca jump 
   jump: function () {
     // Add a vertical velocity to the orca
-    this.orca.body.velocity.y = -170;
+    this.orca.body.velocity.y = -350;
 
     this.jumpSound.play();
   },
@@ -92,12 +92,12 @@ var mainState = {
   addRowOfObstacles: function () {
     // Randomly pick a number between 1 and 5
     // This will be the hole position
-    var hole = Math.floor(Math.random() * totalObstacle - 3) + 1;
+    var hole = Math.floor(Math.random() * (totalObstacle - 3)) + 1;
 
     // Add the 6 pipes 
     // With one big hole at position 'hole' and 'hole + 1'
     for (var i = 0; i < totalObstacle; i++)
-      if (i != hole && i != hole + 1)
+      if (i != hole && i != hole + 1 && i != hole + 2)
         this.addOneObstacle(widthBoundary, i * 60 + 10);
   },
 
