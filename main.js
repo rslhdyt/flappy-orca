@@ -1,4 +1,4 @@
-var game = new Phaser.Game(600, 490, Phaser.AUTO, 'gameDiv');
+var game = new Phaser.Game(600, 490, Phaser.AUTO, 'container');
 
 // Create our 'main' state that will contain the game
 var mainState = {
@@ -11,6 +11,9 @@ var mainState = {
 
     // set obstacle
     game.load.image('obstacle', 'assets/obstacle.png');
+
+    // set sound
+    game.load.audio('jump', 'assets/jump.wav');
   },
 
   create: function () {
@@ -32,7 +35,9 @@ var mainState = {
     game.physics.arcade.enable(this.orca);
 
     // Add gravity to the orca to make it fall
-    this.orca.body.gravity.y = 200;
+    this.orca.body.gravity.y = 250;
+
+    this.jumpSound = game.add.audio('jump');
 
     // Call the 'jump' function when the spacekey is hit
     var spaceKey = game.input.keyboard.addKey(
@@ -54,7 +59,9 @@ var mainState = {
   // Make the orca jump 
   jump: function () {
     // Add a vertical velocity to the orca
-    this.orca.body.velocity.y = -150;
+    this.orca.body.velocity.y = -170;
+
+    this.jumpSound.play();
   },
 
   addOneObstacle: function (x, y) {
