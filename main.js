@@ -1,4 +1,10 @@
-var game = new Phaser.Game(600, 490, Phaser.AUTO, 'container');
+// var widthBoundary = window.innerWidth * window.devicePixelRatio;
+// var heightBoundary = window.innerHeight * window.devicePixelRatio;
+var widthBoundary = 650;
+var heightBoundary = 430;
+var totalObstacle = 7;
+
+var game = new Phaser.Game(widthBoundary, heightBoundary, Phaser.AUTO, 'container');
 
 // Create our 'main' state that will contain the game
 var mainState = {
@@ -25,8 +31,8 @@ var mainState = {
     // Set the physics system
     game.physics.startSystem(Phaser.Physics.ARCADE);
 
-    // Display the orca at the position x=100 and y=245
-    this.orca = game.add.sprite(50, 245, 'orca');
+    // Display the orca at the position x and y
+    this.orca = game.add.sprite((widthBoundary + 20) - widthBoundary, (heightBoundary / 2 - 40), 'orca');
 
     this.obstacles = game.add.group();
 
@@ -51,7 +57,7 @@ var mainState = {
   update: function () {
     // This function is called 60 times per second    
     // It contains the game's logic
-    if (this.orca.y < 0 || this.orca.y > 490)
+    if (this.orca.y < 0 || this.orca.y > heightBoundary)
       this.restartGame();  
 
     game.physics.arcade.overlap(this.orca, this.obstacles, this.restartGame, null, this); 
@@ -86,13 +92,13 @@ var mainState = {
   addRowOfObstacles: function () {
     // Randomly pick a number between 1 and 5
     // This will be the hole position
-    var hole = Math.floor(Math.random() * 5) + 1;
+    var hole = Math.floor(Math.random() * totalObstacle - 3) + 1;
 
     // Add the 6 pipes 
     // With one big hole at position 'hole' and 'hole + 1'
-    for (var i = 0; i < 8; i++)
+    for (var i = 0; i < totalObstacle; i++)
       if (i != hole && i != hole + 1)
-        this.addOneObstacle(600, i * 60 + 10);
+        this.addOneObstacle(widthBoundary, i * 60 + 10);
   },
 
   // Restart the game
