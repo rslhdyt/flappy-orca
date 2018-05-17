@@ -40,9 +40,10 @@ var mainState = {
     this.jumpSound = game.add.audio('jump');
 
     // Call the 'jump' function when the spacekey is hit
-    var spaceKey = game.input.keyboard.addKey(
-      Phaser.Keyboard.SPACEBAR);
+    var spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
     spaceKey.onDown.add(this.jump, this); 
+
+    game.input.onTap.add(this.jump, this);
 
     this.timer = game.time.events.loop(1500, this.addRowOfObstacles, this);
   },
