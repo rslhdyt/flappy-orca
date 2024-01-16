@@ -1,0 +1,26 @@
+{
+  "name": "flappy-orca",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "dev": "vite",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rslhdyt/flappy-orca.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rslhdyt/flappy-orca/issues"
+  },
+  "homepage": "https://github.com/rslhdyt/flappy-orca#readme",
+  "dependencies": {
+    "phaser": "^3.60.0"
+  },
+  "devDependencies": {
+    "vite": "^4.4.11"
+  }
+}

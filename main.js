@@ -1,3 +1,5 @@
+import Phaser from "phaser";
+
 // var widthBoundary = window.innerWidth * window.devicePixelRatio;
 // var heightBoundary = window.innerHeight * window.devicePixelRatio;
 var widthBoundary = 650;
